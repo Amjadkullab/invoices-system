@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SectionController;
@@ -48,4 +50,19 @@ Route::prefix('/')->middleware('auth:web')->group(function(){
     Route::resource('InvoiceAttachments',InvoiceAttachmentsController::class);
     Route::resource('Archive', InvoiceArchiveController::class);
     Route::get('Print_invoice/{id}', [InvoicesController::class,'Print_invoice']);
+    Route::get('invoices_export/', [InvoicesController::class, 'export']);
+    Route::group(['middleware' => ['auth']], function() {
+
+        Route::resource('roles','RoleController');
+
+        Route::resource('users','UserController');
+
+        });
 });
+Route::group(['middleware' => ['auth']], function() {
+
+    Route::resource('roles',RoleController::class);
+
+    Route::resource('users',UserController::class);
+
+    });
