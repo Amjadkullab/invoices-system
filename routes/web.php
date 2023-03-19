@@ -4,12 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Customers_Report;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\InvoiceArchiveController;
 use App\Http\Controllers\InvoicesDetailsController;
 use App\Http\Controllers\InvoiceAttachmentsController;
+use App\Http\Controllers\Invoices_Report;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,18 +54,18 @@ Route::prefix('/')->middleware('auth:web')->group(function(){
     Route::resource('Archive', InvoiceArchiveController::class);
     Route::get('Print_invoice/{id}', [InvoicesController::class,'Print_invoice']);
     Route::get('invoices_export/', [InvoicesController::class, 'export']);
-    Route::group(['middleware' => ['auth']], function() {
+    Route::get('invoices_report', [Invoices_Report::class,'index']);
 
-        Route::resource('roles','RoleController');
+    Route::post('Search_invoices', [Invoices_Report::class,'Search_invoices']);
+    Route::get('customers_report', [Customers_Report::class,'index']);
 
-        Route::resource('users','UserController');
-
-        });
+    Route::post('Search_customers', [Customers_Report::class,'Search_customers']);
 });
 Route::group(['middleware' => ['auth']], function() {
 
     Route::resource('roles',RoleController::class);
 
     Route::resource('users',UserController::class);
+
 
     });

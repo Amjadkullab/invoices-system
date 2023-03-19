@@ -44,6 +44,10 @@ class FortifyServiceProvider extends ServiceProvider
         });
         Fortify::loginView('auth.login');
         // Fortify::Logozzz('auth.login');
-     
+
+        }
+        protected function credentials(\Illuminate\Http\Request $request)
+        {
+            return ['email' => $request->email, 'password' => $request->password, 'status' => 'مفعل'];
         }
 }
