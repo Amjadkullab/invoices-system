@@ -5,7 +5,7 @@
 <!--Internal  treeview -->
 <link href="{{URL::asset('assets/plugins/treeview/treeview-rtl.css')}}" rel="stylesheet" type="text/css" />
 @section('title')
-اضافة الصلاحيات -  نظام لادارة القانونية
+اضافة الصلاحيات -  نظام لادارة الفواتير
 @stop
 
 @endsection

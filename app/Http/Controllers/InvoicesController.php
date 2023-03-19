@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\section;
 use App\Models\invoices;
 use Illuminate\Http\Request;
 use App\Exports\InvoicesExport;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Models\invoices_details;
 use Illuminate\Support\Facades\DB;
 use App\Models\invoice_attachments;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Notification;
 
 class InvoicesController extends Controller
 {
@@ -90,9 +92,9 @@ class InvoicesController extends Controller
         //    // $user = User::first();
         //    // Notification::send($user, new AddInvoice($invoice_id));
 
-        // $user = User::get();
-        // $invoices = invoices::latest()->first();
-        // Notification::send($user, new \App\Notifications\Add_invoice_new($invoices));
+        $user = User::find(Auth::user()->id);
+        $invoices = invoices::latest()->first();
+        Notification::send($user, new \App\Notifications\Add_invoice($invoices));
 
 
 
@@ -253,5 +255,12 @@ class InvoicesController extends Controller
     public function export()
     {
         return Excel::download(new InvoicesExport, 'users.xlsx');
+    }
+    public function MarkAsRead_all(){
+        $userunreadnotifications= auth()->user()->unreadNotifications;
+        if($userunreadnotifications){
+            $userunreadnotifications->markAsRead();
+            return back();
+        }
     }
 }

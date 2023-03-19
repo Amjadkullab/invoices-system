@@ -5,8 +5,9 @@
 <!--Internal  treeview -->
 <link href="{{URL::asset('assets/plugins/treeview/treeview-rtl.css')}}" rel="stylesheet" type="text/css" />
 @section('title')
-تعديل الصلاحيات -  نظام لادارة القانونية
+تعديل الصلاحيات -  نظام لادارة الفواتير
 @stop
+
 @endsection
 @section('page-header')
 <!-- breadcrumb -->

@@ -60,6 +60,7 @@ Route::prefix('/')->middleware('auth:web')->group(function(){
     Route::get('customers_report', [Customers_Report::class,'index']);
 
     Route::post('Search_customers', [Customers_Report::class,'Search_customers']);
+    Route::get('MarkAsRead_all',[InvoicesController::class,'MarkAsRead_all'])->name('MarkAsRead_all');
 });
 Route::group(['middleware' => ['auth']], function() {
 
