@@ -105,7 +105,7 @@ class SectionController extends Controller
      */
     public function destroy(Request $request)
     {
-        $id = $request->id ;
+    
 
         $id = $request->id;
         section::find($id)->delete();

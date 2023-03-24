@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Invoices_Report;
 use App\Http\Controllers\Customers_Report;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SectionController;
@@ -11,7 +13,6 @@ use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\InvoiceArchiveController;
 use App\Http\Controllers\InvoicesDetailsController;
 use App\Http\Controllers\InvoiceAttachmentsController;
-use App\Http\Controllers\Invoices_Report;
 
 
 /*
@@ -61,6 +62,12 @@ Route::prefix('/')->middleware('auth:web')->group(function(){
 
     Route::post('Search_customers', [Customers_Report::class,'Search_customers']);
     Route::get('MarkAsRead_all',[InvoicesController::class,'MarkAsRead_all'])->name('MarkAsRead_all');
+    Route::get('/uploadpage',[PageController::class,'uploadpage']);
+    Route::post('/uploadvideo',[PageController::class,'uploadvideo']);
+    // Route::get('/show',[PageController::class,'show']);
+    Route::get('/download/{file}',[PageController::class,'download']);
+    Route::get('/view/{id}',[PageController::class,'view']);
+    Route::delete('destroy',[PageController::class,'destroy']);
 });
 Route::group(['middleware' => ['auth']], function() {
 

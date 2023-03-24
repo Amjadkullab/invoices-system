@@ -93,7 +93,7 @@
 									<div class="d-flex">
 										<div class="">
 											<h4 class="tx-20 font-weight-bold mb-1 text-white">{{number_format(\App\Models\invoices::where('Value_Status','1')->sum('Total'),2)  }}</h4>
-											<p class="mb-0 tx-12 text-white op-7">عدد الفواتير المدفوعة :{{ \App\Models\invoices::where('Value_Status','2')->count() }} </p>
+											<p class="mb-0 tx-12 text-white op-7">عدد الفواتير المدفوعة :{{ \App\Models\invoices::where('Value_Status','1')->count() }} </p>
 										</div>
 										<span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-up text-white"></i>
