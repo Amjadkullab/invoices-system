@@ -38,7 +38,7 @@ class PageController extends Controller
     }
     public function destroy(Request $request){
 
-      
+
         $video = Video::findOrFail($request->id);
             $video->delete();
             session()->flash('delete', 'تم حذف الملف بنجاح');
